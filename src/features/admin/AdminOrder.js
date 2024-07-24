@@ -14,7 +14,12 @@ function AdminOrder() {
     const dispatch = useDispatch()
 
     function handleEdit(order) {
-        setSelectedOrderEdit(order.id)
+        if(selectedOrderEdit === order.id){
+            setSelectedOrderEdit(null)
+        }
+        else{
+            setSelectedOrderEdit(order.id)
+        }
     }
 
     function handleSort(updateSort){
@@ -43,6 +48,8 @@ function AdminOrder() {
                 return 'bg-red-400 text-white';
             case "dispatched":
                 return 'bg-yellow-400 text-white';
+            case "recieved":
+                return 'bg-green-400 text-white';
             case "delivered":
                 return 'bg-green-400 text-white';
             default:
@@ -53,6 +60,13 @@ function AdminOrder() {
     function handleUpdateOrder(e, order) {
         const updateOrder = { ...order }
         updateOrder.status = e.target.value
+        dispatch(updateOrderEditAsync(updateOrder))
+        setSelectedOrderEdit(null)
+    }
+
+    function handlePaymentUpdate(e, order) {
+        const updateOrder = { ...order }
+        updateOrder.paymentStatus = e.target.value
         dispatch(updateOrderEditAsync(updateOrder))
         setSelectedOrderEdit(null)
     }
@@ -75,14 +89,20 @@ function AdminOrder() {
                                     <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-black py-3 text-xs uppercase border-l-1 border-r-0 whitespace-nowrap font-semibold text-left">
                                         Shipping Address
                                     </th>
+                                    <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-black py-3 text-xs uppercase border-l-1 border-r-0 whitespace-nowrap font-semibold text-left">
+                                        Payment Method
+                                    </th>
                                     <th onClick={() => handleSort({Sort: "totalAmount",Order: sort._order=== 1? -1: 1})} className="px-6 bg-blueGray-50 cursor-pointer text-blueGray-500 align-middle border border-solid border-black py-3 text-xs uppercase border-l-1 border-r-0 whitespace-nowrap font-semibold text-left">
                                         Total Amount
                                         {sort._sort === "totalAmount" ?<ArrowUpIcon className='inline mt-[-4px] ms-3 h-4 w-4'/>:
                                         <ArrowDownIcon className='h-4 w-4 ms-3 mt-[-4px] inline'/>}
                                     </th>
                                     <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-black py-3 text-xs uppercase border-l-1 border-r-0 whitespace-nowrap font-semibold text-left">
-                                        Status
--                                    </th>
+                                        Payment Status
+                                    </th>
+                                    <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-black py-3 text-xs uppercase border-l-1 border-r-0 whitespace-nowrap font-semibold text-left">
+                                        Order Status
+                                    </th>
                                     <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-black py-3 text-xs uppercase border-l-1 border-r-0 whitespace-nowrap font-semibold text-left">
                                         Action
                                     </th>
@@ -133,10 +153,20 @@ function AdminOrder() {
                                         </div>
                                     </td>
                                     <td className="px-6 align-middle border border-black border-1  text-xs whitespace-nowrap p-4">
+                                        {order.paymentMethod.toUpperCase()}
+                                    </td>
+                                    <td className="px-6 align-middle border border-black border-1  text-xs whitespace-nowrap p-4">
                                         ${order.totalAmount}
                                     </td>
                                     <td className="px-6 align-middle border border-black border-1  text-xs whitespace-nowrap p-4">
-                                        {selectedOrderEdit !== order.id? <div className={`${chooseColor(order.status)} px-1 py-2 text-center rounded-xl`}>{order.status}</div> :
+                                        {order.id !== selectedOrderEdit? <div className={`${chooseColor(order.paymentStatus)} px-1 py-2 text-center rounded-xl`}>{order.paymentStatus}</div> :
+                                            <select value={order.paymentStatus} className='w-full h-8 rounded-xl px-2 py-1 text-xs' onChange={e => handlePaymentUpdate(e, order)}>
+                                                <option value="pending">Pending</option>
+                                                <option value="recieved">Recieved</option>
+                                            </select>}
+                                    </td>
+                                    <td className="px-6 align-middle border border-black border-1  text-xs whitespace-nowrap p-4">
+                                        {order.id !== selectedOrderEdit? <div className={`${chooseColor(order.status)} px-1 py-2 text-center rounded-xl`}>{order.status}</div> :
                                             <select value={order.status} className='w-full h-8 rounded-xl px-2 py-1 text-xs' onChange={e => handleUpdateOrder(e, order)}>
                                                 <option value="pending">Pending</option>
                                                 <option value="dispatched">Dispatched</option>

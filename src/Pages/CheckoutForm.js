@@ -60,7 +60,7 @@ export default function CheckoutForm() {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: `https://e-commerce-indol-eight.vercel.app/order-success/${currentOrder.id}`,
+        return_url: `https://e-commerce-smoky-eta-96.vercel.app/order-success/${currentOrder.id}`,
       },
     });
 

@@ -46,7 +46,7 @@ const router = createBrowserRouter([
     element: <SignupPage/>,
   },
   {
-    path: "/cart",
+    path: "/user-cart",
     element: <Protected><CartPage/></Protected>,
   },
   {

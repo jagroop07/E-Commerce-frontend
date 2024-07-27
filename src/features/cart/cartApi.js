@@ -10,7 +10,7 @@ export const addToCart = async(items) =>{
 
 export const fetchCartItemsbyUserId = async() => {
     try {
-        return await axios.get('/cart')
+        return axios.get('/cart')
     } catch (error) {
         return console.log(error.message)
     }

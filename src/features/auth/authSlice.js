@@ -88,6 +88,7 @@ const UserSlice = createSlice({
                 .addCase(signOutAsyc.fulfilled, (state, action) => {
                     state.status = 'success'
                     state.loggedUser = null
+                    state.error = null
                 })
     }
 })

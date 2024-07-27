@@ -141,7 +141,7 @@ export const CheckOut = () => {
 
                                         <div className="flex flex-wrap justify-end mt-12">
                                             <Link
-                                                to='/cart'
+                                                to='/user-cart'
                                                 className="px-6 py-3 me-4 text-sm font-semibold tracking-wide bg-gray-500 text-white rounded-md hover:bg-gray-700">Cancel</Link>
                                             <button type="submit"
                                                 className="px-6 py-3 text-sm font-semibold tracking-wide bg-blue-600 text-white rounded-md hover:bg-blue-700">Save</button>

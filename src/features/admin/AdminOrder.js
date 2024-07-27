@@ -23,7 +23,7 @@ function AdminOrder() {
     }
 
     function handleSort(updateSort){
-        const sortOne = {_sort: updateSort.Sort, _order: updateSort.Order}
+        const sortOne = {_sort: updateSort.Sort ,_order: updateSort.Order}
         setSort(sortOne)
     }
 
@@ -94,7 +94,7 @@ function AdminOrder() {
                                     </th>
                                     <th onClick={() => handleSort({Sort: "totalAmount",Order: sort._order=== 1? -1: 1})} className="px-6 bg-blueGray-50 cursor-pointer text-blueGray-500 align-middle border border-solid border-black py-3 text-xs uppercase border-l-1 border-r-0 whitespace-nowrap font-semibold text-left">
                                         Total Amount
-                                        {sort._sort === "totalAmount" ?<ArrowUpIcon className='inline mt-[-4px] ms-3 h-4 w-4'/>:
+                                        {sort._order === 1 ?<ArrowUpIcon className='inline mt-[-4px] ms-3 h-4 w-4'/>:
                                         <ArrowDownIcon className='h-4 w-4 ms-3 mt-[-4px] inline'/>}
                                     </th>
                                     <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-black py-3 text-xs uppercase border-l-1 border-r-0 whitespace-nowrap font-semibold text-left">
@@ -156,7 +156,7 @@ function AdminOrder() {
                                         {order.paymentMethod.toUpperCase()}
                                     </td>
                                     <td className="px-6 align-middle border border-black border-1  text-xs whitespace-nowrap p-4">
-                                        ${order.totalAmount}
+                                        ${order.totalAmount.toFixed(2)}
                                     </td>
                                     <td className="px-6 align-middle border border-black border-1  text-xs whitespace-nowrap p-4">
                                         {order.id !== selectedOrderEdit? <div className={`${chooseColor(order.paymentStatus)} px-1 py-2 text-center rounded-xl`}>{order.paymentStatus}</div> :

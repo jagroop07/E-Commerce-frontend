@@ -3,6 +3,7 @@ import { addToCart, deleteCartItembyId, fetchCartItemsbyUserId, resetCart, updat
 
 const initialState = {
     items: [],
+    cartStatus: false,
     cartCheck: false,
     state: 'idle',
     error: null
@@ -100,11 +101,13 @@ const cartSlice = createSlice({
                 .addCase(resetCartAsync.fulfilled,(state, action)=>{
                     state.status = 'success'
                     state.items = []
+                    state.cartStatus =  true
                 })
     }
 })
 
 export const selectCartCheck = (state) => state.Cart.cartCheck
 export const selectCartItems = (state) => state.Cart.items
+export const selectCartStatus = (state) => state.Cart.cartStatus
 
 export default cartSlice.reducer

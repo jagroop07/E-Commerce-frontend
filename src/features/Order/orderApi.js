@@ -17,7 +17,7 @@ export const fetchAllOrders = async({sort, pagination}) => {
         }
 
         for(let key in sort){
-            queryString+=`${key}=${sort[key]}`
+            queryString+=`${key}=${sort[key]}&`
         }
 
         console.log(queryString)

@@ -11,7 +11,7 @@ const highlights =  [
     'Dyed with our proprietary colors',
     'Pre-washed & pre-shrunk',
     'Ultra-soft 100% cotton',
-  ]
+]
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')

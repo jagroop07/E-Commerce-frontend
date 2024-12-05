@@ -1,8 +1,8 @@
-import axios from "axios"
+import { api } from '../../utils/api'
 
 export const addOrder = async(order) => {
     try {
-        return axios.post('/order', order)
+        return api.post('/order', order)
     } catch (error) {
         return console.log(error.message)
     }
@@ -22,7 +22,7 @@ export const fetchAllOrders = async({sort, pagination}) => {
 
         console.log(queryString)
 
-        return axios.get('/order?'+queryString)
+        return api.get('/order?'+queryString)
     } catch (error) {
         return console.log(error.message)
     }
@@ -31,7 +31,7 @@ export const fetchAllOrders = async({sort, pagination}) => {
 export const updateOrderEdit = async(order) => {
     try {
         console.log(order)
-        return axios.patch('/order/'+order.id, order)
+        return api.patch('/order/'+order.id, order)
     } catch (error) {
         return console.log(error.message)
     }

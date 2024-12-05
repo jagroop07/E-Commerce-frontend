@@ -1,8 +1,8 @@
-import axios from "axios"
+import { api } from '../../utils/api'
 
 export const addToCart = async(items) =>{
     try {
-        return axios.post('/cart', items)
+        return api.post('/cart', items)
     } catch (error) {
         return console.log(error.message)
     }
@@ -10,7 +10,7 @@ export const addToCart = async(items) =>{
 
 export const fetchCartItemsbyUserId = async() => {
     try {
-        return axios.get('/cart')
+        return api.get('/cart')
     } catch (error) {
         return console.log(error.message)
     }
@@ -18,7 +18,7 @@ export const fetchCartItemsbyUserId = async() => {
 
 export const deleteCartItembyId = async(id) => {
     try {
-        const response = await axios.delete('/cart/'+id)
+        const response = await api.delete('/cart/'+id)
         return response
     } catch (error) {
         if(error.response && error.response.status === 404){
@@ -32,7 +32,7 @@ export const deleteCartItembyId = async(id) => {
 
 export const updateCart = async(item) => {
     try {
-        return axios.patch('/cart/'+item.id, item)
+        return api.patch('/cart/'+item.id, item)
     } catch (error) {
         return console.log(error.message)
     }

@@ -1,8 +1,8 @@
-import axios from "axios"
+import { api } from '../../utils/api'
 
 export const fetchBrands = async() => {
     try {
-        return axios.get('/brands')
+        return api.get('/brands')
     } catch (error) {
         return console.log(error.message)
     }
@@ -10,7 +10,7 @@ export const fetchBrands = async() => {
 
 export const fetchProductbyId = async(id) => {
     try {
-        return axios.get('/products/'+id)
+        return api.get('/products/'+id)
     } catch (error) {
         return console.log(error.message)
     }
@@ -18,7 +18,7 @@ export const fetchProductbyId = async(id) => {
 
 export const fetchCategories = async() => {
     try {
-        return axios.get('/categories')
+        return api.get('/categories')
     } catch (error) {
         return console.log(error.message)
     }
@@ -43,12 +43,12 @@ export const fetchAllFilterProducts = async(filter,sort, pagination)=>{
         queryString += `${key}=${pagination[key]}&`
     }
 
-    return axios.get('/products?'+queryString)
+    return api.get('/products?'+queryString)
 }
 
 export const updateProduct = async(update)=>{
     try {
-        return axios.patch('/products/'+update.id, update)
+        return api.patch('/products/'+update.id, update)
     } catch (error) {
         return console.log(error.message)
     }
@@ -56,7 +56,7 @@ export const updateProduct = async(update)=>{
 
 export const addProduct = async(product) => {
     try {
-        return axios.post('/products', product)
+        return api.post('/products', product)
     } catch (error) {
         return console.log(error.message)
     }
@@ -64,7 +64,7 @@ export const addProduct = async(product) => {
 
 export const deleteProduct = async(id) => {
     try {
-        return axios.delete('/products/'+id)
+        return api.delete('/products/'+id)
     } catch (error) {
         return console.log(error.message)
     }

@@ -99,7 +99,7 @@ export default function Products() {
 
   return (
     <div className='bg-white'>
-      <p className='text-xl text-center font-semibold hover:text-purple-400 my-2'>Website Under Development :)</p>
+      {/* <p className='text-xl text-center font-semibold hover:text-purple-400 my-2'>Website Under Development :)</p> */}
       <div>
         <MobileFilter filters={filters} handleFilter={handleFilter} mobileFiltersOpen={mobileFiltersOpen} setMobileFiltersOpen={setMobileFiltersOpen}></MobileFilter>
 

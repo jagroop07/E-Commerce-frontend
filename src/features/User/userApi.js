@@ -1,8 +1,8 @@
-import axios from "axios"
+import { api } from '../../utils/api'
 
 export const fetchLoggedInUserOrders = async() => {
     try {
-        return axios.get('/order/fetch')
+        return api.get('/order/fetch')
     } catch (error) {
         return console.log(error.message)
     }
@@ -10,7 +10,7 @@ export const fetchLoggedInUserOrders = async() => {
 
 export const fetchLoggedInUser = async() => {
     try {
-        return axios.get('/users')
+        return api.get('/users')
     } catch (error) {
         return console.log(error.message)
     }
@@ -18,7 +18,7 @@ export const fetchLoggedInUser = async() => {
 
 export const updateUser = async(update) => {
     try {
-        return axios.patch('/users/update', update)
+        return api.patch('/users/update', update)
     } catch (error) {
         return console.log(error.message)
     }

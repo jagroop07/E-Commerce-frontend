@@ -15,6 +15,7 @@
     "@testing-library/user-event": "^14.5.2",
     "axios": "^1.7.2",
     "json-server": "^1.0.0-beta.1",
+    "path": "^0.12.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-form-hook": "^0.0.1",

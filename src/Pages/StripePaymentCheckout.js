@@ -3,7 +3,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./CheckoutForm";
 import "../Stripe.css";
-import axios from "axios";
+import { api } from '../utils/api'
 import { useSelector } from "react-redux";
 import { selectCurrentOrder } from "../features/Order/orderSlice";
 import { Navigate } from "react-router-dom";
@@ -17,7 +17,7 @@ function StripePaymentCheckout() {
 
   useEffect(() => {
     async function payment(){
-        const {data} = await axios.post('/create-payment-intent', {totalAmount, orderId: currentOrder.id})
+        const {data} = await api.post('/create-payment-intent', {totalAmount, orderId: currentOrder.id})
         setClientSecret(data.clientSecret)
     }
 
